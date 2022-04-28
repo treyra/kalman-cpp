@@ -1,12 +1,12 @@
 /**
-* Implementation of KalmanFilter class.
-*
+* Implementation of KalmanFilter functions.
+* Adapted from:
 * @author: Hayk Martirosyan
 * @date: 2014.11.15
 *
-* Updated to state transition matrix and input format
+* Updated to state transition matrix and input format and to make function based
 * @author: Jimmy Ragan
-* @date : 2022.4.26
+* @date : 2022.4.27
 *
 */
 

@@ -6,6 +6,10 @@
 *
 * @author: Hayk Martirosyan
 * @date: 2014.11.15
+*
+* Updated to state transition matrix and input format
+* @author: Jimmy Ragan
+* @date : 2022.4.26
 */
 
 #include <Eigen/Dense>
@@ -18,7 +22,8 @@ public:
 
   /**
   * Create a Kalman filter with the specified matrices.
-  *   A - System dynamics matrix
+  *   F - State transition matrix
+  *   B - Control transition matrix
   *   C - Output matrix
   *   Q - Process noise covariance
   *   R - Measurement noise covariance
@@ -26,7 +31,8 @@ public:
   */
   KalmanFilter(
       double dt,
-      const Eigen::MatrixXd& A,
+      const Eigen::MatrixXd& F,
+      const Eigen::MatrixXd& B,
       const Eigen::MatrixXd& C,
       const Eigen::MatrixXd& Q,
       const Eigen::MatrixXd& R,
@@ -58,7 +64,7 @@ public:
   * Update the estimated state based on measured values,
   * using the given time step and dynamics matrix.
   */
-  void update(const Eigen::VectorXd& y, double dt, const Eigen::MatrixXd A);
+  void update(const Eigen::VectorXd& y, double dt, const Eigen::MatrixXd F);
 
   /**
   * Return the current state and time.
@@ -69,7 +75,7 @@ public:
 private:
 
   // Matrices for computation
-  Eigen::MatrixXd A, C, Q, R, P, K, P0;
+  Eigen::MatrixXd F, B, C, Q, R, P, K, P0;
 
   // System dimensions
   int m, n;
